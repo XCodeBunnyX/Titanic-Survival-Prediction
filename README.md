@@ -1,29 +1,96 @@
+<div align="center">
+
 # 🚢 Titanic Survival Predictor
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-3.0%2B-green.svg)](https://flask.palletsprojects.com/)
-[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-orange.svg)](https://scikit-learn.org/)
-[![Deployment](https://img.shields.io/badge/Render-Ready-brightgreen.svg)](https://render.com/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://titanic-survival-prediction-9xz4.onrender.com)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/XCodeBunnyX/Titanic-Survival-Prediction)
 
-An end-to-end AI/Machine Learning web application that predicts passenger survival probability on the Titanic using a pre-trained **Scikit-Learn Logistic Regression Pipeline**, served via a **Flask REST API**, and presented through a modern, responsive **Glassmorphism SaaS Frontend**.
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask-3.0%2B-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4%2B-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Render](https://img.shields.io/badge/Render-Deployed-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://render.com/)
+
+<p align="center">
+  <b>A production-grade AI/ML web application predicting Titanic passenger survival using Scikit-Learn, Flask REST API, and a modern Glassmorphic SaaS UI.</b>
+</p>
+
+</div>
 
 ---
 
-## ✨ Current Project Status
+## 🌐 Live Demo
 
-- ✅ **Machine Learning Pipeline**: Trained Scikit-Learn pipeline using `StandardScaler` feature normalization, 5-Fold `Cross Validation`, and `GridSearchCV` hyperparameter tuning (Final Test Accuracy: **79.33%**).
-- ✅ **Flask Backend**: Production-ready REST API (`POST /predict`) with robust parameter validation, automatic `FamilySize` calculation (`SibSp + Parch + 1`), and one-hot encoding for `Embarked` ports.
-- ✅ **Interactive Glassmorphism Frontend**: Navy Blue & Crisp White palette with frosted glass cards, numerical percentage counter animation, dynamic probability progress bar, and instant parameter feedback.
-- ✅ **Cloud Deployment Ready**: Fully configured for **Render Cloud** deployment with `render.yaml` Blueprint, `gunicorn` WSGI server, and `requirements.txt`.
+🔗 **Live Application URL**: [https://titanic-survival-prediction-9xz4.onrender.com](https://titanic-survival-prediction-9xz4.onrender.com)
+
+Experience the live application hosted on Render Cloud. Enter passenger attributes to receive real-time predictions and survival probability metrics calculated directly by the deployed Machine Learning model.
+
+---
+
+## 🐙 GitHub Repository
+
+🔗 **Repository URL**: [https://github.com/XCodeBunnyX/Titanic-Survival-Prediction](https://github.com/XCodeBunnyX/Titanic-Survival-Prediction)
+
+---
+
+## 📌 Project Overview
+
+The **Titanic Survival Predictor** is an end-to-end Machine Learning web application designed to solve the classic Kaggle shipwreck survival problem. The application features a pre-trained **Scikit-Learn Pipeline** (`StandardScaler` + `Logistic Regression`), wrapped in a lightweight, production-configured **Flask REST API**, and presented through a custom **Glassmorphism UI**.
+
+This project demonstrates portfolio-quality engineering practices including pipeline serialization, automated feature engineering, robust API input validation, responsive web design, and continuous cloud deployment via Render.
+
+---
+
+## ✨ Key Features
+
+- **Modern Glassmorphism Design System**: Navy Blue & Crisp White palette, frosted glass containers (`backdrop-filter: blur(20px)`), and smooth micro-interactions.
+- **Pre-Trained Machine Learning Model**: Scikit-Learn Pipeline with `StandardScaler` feature scaling and `Logistic Regression` tuned via 5-Fold `GridSearchCV`.
+- **Server-Side Feature Engineering**: Automatically computes `FamilySize` (`SibSp + Parch + 1`) and one-hot encodes `Embarked` ports (`Embarked_Q`, `Embarked_S`) on the backend.
+- **Robust REST API**: High-performance `POST /predict` endpoint returning structured JSON predictions and numerical probabilities.
+- **Interactive Visualizations**: Dynamic probability percentage counter animation, color-coded progress fill bar, and parameter badges.
+- **Production Cloud Deployment**: Fully configured for Render using `gunicorn` WSGI server, `render.yaml` Blueprint, and clean environment routing.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Backend & ML**: Python, Flask, Scikit-Learn, Pandas, NumPy, Joblib, Gunicorn
-- **Frontend**: HTML5, CSS3 (Glassmorphism design system), Vanilla JavaScript, Font Awesome 6, Google Fonts (`Outfit` & `Inter`)
-- **Data & Modeling**: Kaggle Titanic Dataset, Jupyter Notebook (`notebooks/Titanic_Survival_Predictor.ipynb`)
-- **Deployment**: Render Cloud (`render.yaml`)
+| Domain | Technologies |
+| :--- | :--- |
+| **Language** | Python 3.10+, JavaScript (ES6+) |
+| **Backend Framework** | Flask 3.0+, Flask-CORS, Gunicorn |
+| **Machine Learning** | Scikit-Learn, Pandas, NumPy, Joblib |
+| **Frontend UI** | HTML5, Vanilla CSS3 (Glassmorphism), Font Awesome 6, Google Fonts (`Outfit` & `Inter`) |
+| **Data & Notebooks** | Kaggle Titanic Manifest (`data/train.csv`), Jupyter Notebook (`notebooks/`) |
+| **Deployment** | Render Cloud Platform (`render.yaml`) |
+
+---
+
+## 📊 Machine Learning Pipeline
+
+| Parameter | Specification |
+| :--- | :--- |
+| **Dataset** | Kaggle Titanic Dataset (`data/train.csv`) |
+| **Pipeline Architecture** | `StandardScaler` → `Logistic Regression` (`C=0.01`) |
+| **Cross-Validation** | 5-Fold Cross Validation |
+| **Hyperparameter Optimization** | `GridSearchCV` |
+| **Final Test Accuracy** | **79.33%** |
+| **Input Feature Vector** | `['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'FamilySize', 'Embarked_Q', 'Embarked_S']` |
+
+---
+
+## 🖼️ Application Screenshots
+
+<div align="center">
+
+### Prediction Analysis & Confidence Result
+![Prediction Result Card](screenshots/prediction_result_card.png)
+
+### Model Architecture & Technical Specifications
+![Model Architecture Cards](screenshots/model_info_footer.png)
+
+</div>
 
 ---
 
@@ -31,42 +98,30 @@ An end-to-end AI/Machine Learning web application that predicts passenger surviv
 
 ```
 Titanic-Survival-Predictor/
-├── app.py                      # Flask REST API & Web Server
+├── app.py                      # Flask REST API Backend & Production Server
 ├── titanic_model.pkl           # Trained Scikit-Learn Model Pipeline
 ├── requirements.txt            # Production Python Dependencies
-├── render.yaml                 # Render Blueprint Deployment Configuration
-├── README.md                   # Project Documentation
-├── .gitignore                  # Git Exclusion Rules
+├── render.yaml                 # Render Infrastructure-as-Code Blueprint
+├── README.md                   # Complete Portfolio Documentation
+├── .gitignore                  # Git Ignore Specifications
 │
 ├── templates/
 │   └── index.html              # HTML5 Glassmorphism UI (Jinja2)
 │
 ├── static/
-│   ├── style.css               # Modern CSS System & Animations
-│   └── script.js               # Async Frontend JS & API Fetch Handler
+│   ├── style.css               # Custom CSS Glassmorphism Design System
+│   └── script.js               # Async Frontend JS & Fetch API Logic
 │
 ├── notebooks/
-│   └── Titanic_Survival_Predictor.ipynb   # Model Training Notebook
+│   └── Titanic_Survival_Predictor.ipynb   # Jupyter Model Training Notebook
 │
 ├── data/
-│   └── train.csv               # Kaggle Titanic Manifest Data
+│   └── train.csv               # Kaggle Titanic Training Dataset
 │
-└── screenshots/                # Application UI Screenshots
+└── screenshots/                # Application Screenshots
+    ├── prediction_result_card.png
+    └── model_info_footer.png
 ```
-
----
-
-## 📊 Model Information
-
-| Specification | Details |
-| :--- | :--- |
-| **Dataset** | Kaggle Titanic Dataset (`data/train.csv`) |
-| **Model Algorithm** | `Logistic Regression` (`C=0.01`) |
-| **Preprocessing** | `StandardScaler` |
-| **Validation** | 5-Fold Cross Validation |
-| **Hyperparameter Tuning** | `GridSearchCV` |
-| **Final Test Accuracy** | `79.33%` |
-| **Features Used** | `Pclass`, `Sex`, `Age`, `SibSp`, `Parch`, `Fare`, `FamilySize`, `Embarked_Q`, `Embarked_S` |
 
 ---
 
@@ -76,7 +131,7 @@ Titanic-Survival-Predictor/
 
 **Headers**: `Content-Type: application/json`
 
-#### Request Payload:
+#### Example Request Payload:
 ```json
 {
   "Pclass": 1,
@@ -89,7 +144,7 @@ Titanic-Survival-Predictor/
 }
 ```
 
-#### JSON Response:
+#### Example JSON Response:
 ```json
 {
   "prediction": "Survived",
@@ -100,7 +155,7 @@ Titanic-Survival-Predictor/
 
 ---
 
-## 🚀 Local Setup & Running
+## 💻 Local Setup & Installation
 
 ### 1. Clone the Repository
 ```bash
@@ -108,32 +163,47 @@ git clone https://github.com/XCodeBunnyX/Titanic-Survival-Prediction.git
 cd Titanic-Survival-Prediction
 ```
 
-### 2. Create Virtual Environment & Install Dependencies
+### 2. Create & Activate Virtual Environment
 ```bash
 python3 -m venv venv
 source venv/bin/activate    # On Windows: venv\Scripts\activate
+```
+
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run the Flask Server
+### 4. Run the Application
 ```bash
 python3 app.py
 ```
-Open **http://localhost:5001** (or `http://localhost:5000`) in your web browser.
+Open **http://localhost:5001** (or `http://localhost:5000`) in your browser.
 
 ---
 
-## ☁️ Deployment on Render
+## ☁️ Running Production Deployment on Render
 
-This repository includes a `render.yaml` Blueprint for 1-click deployment on Render:
+This project includes a pre-configured `render.yaml` Blueprint:
 
 1. Log into your **[Render Dashboard](https://dashboard.render.com/)**.
 2. Select **New +** → **Blueprint**.
-3. Connect your GitHub repository (`XCodeBunnyX/Titanic-Survival-Prediction`).
-4. Render will automatically build (`pip install -r requirements.txt`) and start the application using `gunicorn app:app`.
+3. Connect repository `XCodeBunnyX/Titanic-Survival-Prediction`.
+4. Render will automatically build dependencies via `pip install -r requirements.txt` and launch `gunicorn app:app`.
+
+---
+
+## 🔮 Future Improvements
+
+- [ ] Add SHAP / LIME explainable AI breakdown cards for feature contribution scores.
+- [ ] Support ensemble comparison models (Random Forest, XGBoost, LightGBM).
+- [ ] Add interactive scenario comparison mode for historical passenger profiles.
+- [ ] Implement automated CI/CD pipeline via GitHub Actions.
 
 ---
 
 ## 👤 Author
 
-Built by **Bunny** (CodeXBunny AI Team)
+**Bunny** — *CodeXBunny AI Team*  
+- GitHub: [@XCodeBunnyX](https://github.com/XCodeBunnyX)
+- Project Repository: [Titanic-Survival-Prediction](https://github.com/XCodeBunnyX/Titanic-Survival-Prediction)
