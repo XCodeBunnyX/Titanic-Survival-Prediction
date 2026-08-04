@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Titanic Survival Predictor - AI/ML Web Application connected to a Flask backend serving a trained Scikit-learn model.">
+    <title>Titanic Survival Predictor | AI Web Application</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Glassmorphism Ambient Glow Blobs -->
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <div class="app-wrapper">
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <div class="brand-badge">
+                <span class="badge-dot"></span>
+                <i class="fa-solid fa-ship"></i>
+                <span>Flask & Scikit-learn AI App</span>
+            </div>
+            <h1 class="main-title">Titanic Survival Predictor</h1>
+            <p class="subtitle">Predict passenger survival using a Machine Learning model trained on the Kaggle Titanic dataset.</p>
+        </header>
+
+        <main class="main-container">
+            <!-- Centered Prediction Form Card -->
+            <section class="glass-card form-card">
+                <div class="card-header">
+                    <h2><i class="fa-solid fa-sliders icon-blue"></i> Passenger Profile</h2>
+                    <span class="card-hint">Enter passenger parameters for model inference</span>
+                </div>
+
+                <form id="predictionForm" novalidate>
+                    <div class="form-grid">
+                        
+                        <!-- 1. Passenger Class -->
+                        <div class="form-group full-width">
+                            <label for="pclass">
+                                <i class="fa-solid fa-layer-group icon-blue"></i> Passenger Class
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="pclass" name="pclass" required>
+                                    <option value="" disabled selected>Select Passenger Class</option>
+                                    <option value="1">First Class</option>
+                                    <option value="2">Second Class</option>
+                                    <option value="3">Third Class</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-arrow"></i>
+                            </div>
+                            <span class="error-msg" id="pclass-error">Please select a passenger class</span>
+                        </div>
+
+                        <!-- 2. Sex -->
+                        <div class="form-group full-width">
+                            <label><i class="fa-solid fa-venus-mars icon-blue"></i> Sex</label>
+                            <div class="radio-segmented">
+                                <input type="radio" name="sex" id="sex-male" value="male" checked>
+                                <label for="sex-male" class="radio-label">
+                                    <i class="fa-solid fa-mars"></i> Male
+                                </label>
+
+                                <input type="radio" name="sex" id="sex-female" value="female">
+                                <label for="sex-female" class="radio-label">
+                                    <i class="fa-solid fa-venus"></i> Female
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- 3. Age -->
+                        <div class="form-group">
+                            <label for="age">
+                                <i class="fa-solid fa-cake-candles icon-blue"></i> Age (years)
+                            </label>
+                            <div class="input-wrapper">
+                                <input type="number" id="age" name="age" min="0" max="100" step="0.5" placeholder="e.g. 29" required>
+                                <span class="input-unit">yrs</span>
+                            </div>
+                            <span class="error-msg" id="age-error">Please enter a valid age</span>
+                        </div>
+
+                        <!-- 4. Fare -->
+                        <div class="form-group">
+                            <label for="fare">
+                                <i class="fa-solid fa-ticket icon-blue"></i> Ticket Fare (£)
+                            </label>
+                            <div class="input-wrapper">
+                                <span class="input-prefix">£</span>
+                                <input type="number" id="fare" name="fare" min="0" max="600" step="0.1" placeholder="e.g. 32.20" required>
+                            </div>
+                            <span class="error-msg" id="fare-error">Please enter a valid ticket fare</span>
+                        </div>
+
+                        <!-- 5. SibSp -->
+                        <div class="form-group">
+                            <label for="sibsp">
+                                <i class="fa-solid fa-users icon-blue"></i> Siblings / Spouses (SibSp)
+                            </label>
+                            <div class="input-wrapper number-stepper">
+                                <button type="button" class="step-btn" onclick="stepInput('sibsp', -1)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="sibsp" name="sibsp" min="0" max="10" value="0" required>
+                                <button type="button" class="step-btn" onclick="stepInput('sibsp', 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <span class="error-msg" id="sibsp-error">Enter number of siblings/spouses</span>
+                        </div>
+
+                        <!-- 6. Parch -->
+                        <div class="form-group">
+                            <label for="parch">
+                                <i class="fa-solid fa-child icon-blue"></i> Parents / Children (Parch)
+                            </label>
+                            <div class="input-wrapper number-stepper">
+                                <button type="button" class="step-btn" onclick="stepInput('parch', -1)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="parch" name="parch" min="0" max="10" value="0" required>
+                                <button type="button" class="step-btn" onclick="stepInput('parch', 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <span class="error-msg" id="parch-error">Enter number of parents/children</span>
+                        </div>
+
+                        <!-- 7. Embarked -->
+                        <div class="form-group full-width">
+                            <label for="embarked">
+                                <i class="fa-solid fa-location-dot icon-blue"></i> Port of Embarkation
+                            </label>
+                            <div class="select-wrapper">
+                                <select id="embarked" name="embarked" required>
+                                    <option value="S" selected>Southampton (S)</option>
+                                    <option value="Q">Queenstown (Q)</option>
+                                    <option value="C">Cherbourg (C)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down select-arrow"></i>
+                            </div>
+                            <span class="error-msg" id="embarked-error">Please select port of embarkation</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Primary Action Button -->
+                    <div class="button-wrapper">
+                        <button type="submit" id="predictBtn" class="primary-btn">
+                            <span class="btn-text">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> Predict Survival
+                            </span>
+                            <span class="btn-spinner hidden">
+                                <i class="fa-solid fa-spinner fa-spin"></i> Predicting...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Result Card Section (Initially Hidden) -->
+            <section id="resultCard" class="glass-card result-card hidden">
+                <div class="result-header">
+                    <h3><i class="fa-solid fa-chart-pie icon-blue"></i> Prediction Result</h3>
+                    <span class="timestamp-badge" id="resultTimestamp">Backend API Response</span>
+                </div>
+
+                <div class="result-body">
+                    <!-- Status Banner -->
+                    <div id="statusBanner" class="status-banner">
+                        <div class="status-icon-box" id="statusIconBox">
+                            <i id="statusIcon" class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <div class="status-info">
+                            <span class="status-label-small">Prediction</span>
+                            <h3 class="status-title" id="statusTitle">✅ Survived</h3>
+                            <p class="status-description" id="statusDesc">The model predicts a high probability of survival.</p>
+                        </div>
+                    </div>
+
+                    <!-- Confidence / Probability Progress Bar -->
+                    <div class="probability-section">
+                        <div class="prob-header">
+                            <span class="prob-label"><i class="fa-solid fa-gauge-high icon-blue"></i> Confidence</span>
+                            <span class="prob-value" id="probValue">0.0%</span>
+                        </div>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" id="progressBarFill" style="width: 0%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Parameter Summary Pills -->
+                    <div class="insights-container">
+                        <div class="insight-pill" id="pillClass"><i class="fa-solid fa-layer-group"></i> Class: <span>--</span></div>
+                        <div class="insight-pill" id="pillSex"><i class="fa-solid fa-venus-mars"></i> Sex: <span>--</span></div>
+                        <div class="insight-pill" id="pillFamily"><i class="fa-solid fa-users"></i> Family: <span>--</span></div>
+                        <div class="insight-pill" id="pillFare"><i class="fa-solid fa-ticket"></i> Fare: <span>--</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Model Information Section -->
+            <section class="model-info-section">
+                <div class="section-title">
+                    <i class="fa-solid fa-microchip"></i>
+                    <h2>Model Information</h2>
+                </div>
+
+                <div class="model-grid">
+                    <!-- Card 1: Algorithm -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-brain"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Algorithm</span>
+                            <h4 class="info-val">Logistic Regression</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Preprocessing -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-sliders"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Preprocessing</span>
+                            <h4 class="info-val">StandardScaler</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Validation -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-list-check"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Validation</span>
+                            <h4 class="info-val">5-Fold Cross Validation</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Hyperparameter Tuning -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Hyperparameter Tuning</span>
+                            <h4 class="info-val">GridSearchCV</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card 5: Final Test Accuracy -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Final Test Accuracy</span>
+                            <h4 class="info-val text-emerald">79.33%</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card 6: Dataset -->
+                    <div class="glass-card info-card">
+                        <div class="info-icon"><i class="fa-solid fa-database"></i></div>
+                        <div class="info-content">
+                            <span class="info-label">Dataset</span>
+                            <h4 class="info-val">Kaggle Titanic Dataset</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="author-tag">
+                    Built by <strong>Bunny</strong>
+                </div>
+                <div class="tech-stack-container">
+                    <div class="tech-badges">
+                        <span class="tech-badge"><i class="fa-brands fa-python"></i> Python</span>
+                        <span class="tech-badge"><i class="fa-solid fa-flask"></i> Flask</span>
+                        <span class="tech-badge"><i class="fa-solid fa-gear"></i> Scikit-learn</span>
+                        <span class="tech-badge"><i class="fa-brands fa-html5"></i> HTML</span>
+                        <span class="tech-badge"><i class="fa-brands fa-css3-alt"></i> CSS</span>
+                        <span class="tech-badge"><i class="fa-brands fa-js"></i> JavaScript</span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
